@@ -15,6 +15,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    if !owner(self.product)
+      redirect_to root_path, notice: 'No'
+    end
   end
 
   def create
@@ -42,9 +45,17 @@ class ProductsController < ApplicationController
     redirect_to category_url(product.category), notice: 'Product was successfully destroyed.'
   end
 
+
+
   private
 
   def product_params
     params.require(:product).permit(:title, :description, :price, :category_id)
   end
+
+  def owner(procuct)
+    current_user == product.user
+  end
+
+
 end
