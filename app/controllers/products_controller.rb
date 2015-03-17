@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
 
   def edit
     if !owner(self.product)
-      redirect_to root_path, notice: 'No'
+      redirect_to root_path, error: 'You are not allowed to edit this product.'
     end
   end
 
@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
 
   def update
     if !owner(self.product)
-      redirect_to root_path, notice: 'No'
+      redirect_to root_path, error: 'You are not allowed to edit this product.'
     else
       if self.product.update(product_params)
         redirect_to category_product_url(category, product), notice: 'Product was successfully updated.'
