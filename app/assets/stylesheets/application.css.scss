@@ -1,1 +1,82 @@
 @import "bootstrap";
+html{
+	min-height: 100%;
+}
+
+body
+{
+	font-size: 12px;
+	color: #726E6E;
+	font-family: Helvetica;
+	
+	background: linear-gradient(to bottom, #DDD 0%, rgba(225, 225, 225, 0) 30%, rgba(235, 235, 235, 0) 81%, #EEE 100%) repeat scroll 0% 0% #FFF;
+}
+
+h1{
+	font-size: 18px;
+	font-weight: 100;
+	}
+
+.container-fluid{
+	width: 70%;
+	
+}
+
+#title{
+	color: #726E6E;
+}
+
+.page-header{
+	margin-top: 0;
+}
+
+.page-header > h1{
+	margin-left: 50px;
+}
+
+.panel-footer{
+	background-color: #DFFFF5;
+	color: #638299;
+}
+
+.navbar-brand > a,
+.navbar-text > a{
+    color: #E6F3FF;
+}
+
+.pull-right{
+	font-size: 10px;
+	margin-top: 10px;
+}
+
+#new_category{
+	text-align: center;
+	margin-bottom: 15px;	
+}
+
+
+
+.navbar-default {
+    background-color: #0BA4A4;
+    }
+
+.navbar-brand {
+    font-size: 12px;
+    }
+
+.navbar {
+    min-height: 40px;
+    }
+
+a.list-group-item-info{
+	text-align: center;
+}
+
+.divider{
+	margin-bottom: 20px;
+}
+
+label, 
+.controls{
+	display: inline-block; 
+}

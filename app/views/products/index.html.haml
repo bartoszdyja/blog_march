@@ -1,21 +1,25 @@
-%h1 Listing products
+-if products.count>0
+  %h1 Listing products
+-else
+  %h1 There aren't any products in this categ1ory.
+-products.each do |product|
+  .panel.panel-default
+    .panel-heading
+      =link_to product.title, category_product_path(product.category, product)
+    .panel-body
+      =product.description
+    .panel-footer
+      Price: 
+      =product.price
+      .pull-right
+        = link_to 'Show', category_product_path(product.category, product)
+        -if product.user == current_user
+          = link_to 'Edit', edit_category_product_path(product.category, product)
+          = link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th
-    %th
-    %th
 
-  - products.each do |product|
-    %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
-      %td= link_to 'Edit', edit_category_product_path(product.category, product)
-      %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
 
-%br
+
+
+
+

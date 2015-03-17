@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
 
   def create
     self.review = Review.new(review_params)
+    review.user=current_user
 
     if review.save
       product.reviews << review
@@ -24,6 +25,6 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:content, :rating)
+      params.require(:review).permit(:content, :rating, :user_id)
     end
 end

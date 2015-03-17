@@ -16,7 +16,8 @@
   = product.category.name
 
 %h3 Reviews
-= render 'reviews/form'
+-if user_signed_in?
+  = render 'reviews/form'
 
 = render reviews
 

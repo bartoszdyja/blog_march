@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   expose(:category)
-  expose(:products)
+  expose(:products) {Product.where(category_id: params[:category_id])}
   expose(:product)
   expose(:review) { Review.new }
   expose_decorated(:reviews, ancestor: :product)
 
   def index
+    
   end
 
   def show
@@ -32,10 +34,14 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if self.product.update(product_params)
-      redirect_to category_product_url(category, product), notice: 'Product was successfully updated.'
+    if !owner(self.product)
+      redirect_to root_path, notice: 'No'
     else
-      render action: 'edit'
+      if self.product.update(product_params)
+        redirect_to category_product_url(category, product), notice: 'Product was successfully updated.'
+      else
+        render action: 'edit'
+      end
     end
   end
 

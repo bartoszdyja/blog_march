@@ -1,17 +1,19 @@
-%p#notice= notice
-
 %p
-  %b Name:
-  = category.name
+	There are
+	=pluralize(category.products.count, 'product')
+	in 
+	%b=category.name
+	category
 
-%p
-  - category.products.each do |product|
-    = product.title
+.list-group
+	=link_to 'Show all products from this category', category_products_path(category), class: "list-group-item list-group-item-info"
 
-%p
-  %h3 New product
-  = render 'products/form'
 
-= link_to 'Edit', edit_category_path(category)
-\|
+-if user_signed_in?
+	%p
+		%h3 New product
+		= render 'products/form'
+	-if current_user==product.user
+		= link_to 'Edit', edit_category_path(category)
+		\|
 = link_to 'Back', categories_path, class: 'btn btn-primary'
