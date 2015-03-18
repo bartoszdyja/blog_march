@@ -25,7 +25,7 @@
       -if notice
         .alert.alert-warning= notice
       -if alert
-        .alert.alert-warning= alert
+        .alert.alert-warning=flash[:error]
       .row
         .col-lg-12
           = yield

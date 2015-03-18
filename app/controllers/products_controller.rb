@@ -18,12 +18,14 @@ class ProductsController < ApplicationController
 
   def edit
     if !owner(self.product)
-      redirect_to root_path, error: 'You are not allowed to edit this product.'
-    end
+      redirect_to category_product_url
+      flash[:error] = 'You are not allowed to edit this product.'
+     end
   end
 
   def create
     self.product = Product.new(product_params)
+    product.user = current_user
 
     if product.save
       category.products << product
@@ -35,7 +37,8 @@ class ProductsController < ApplicationController
 
   def update
     if !owner(self.product)
-      redirect_to root_path, error: 'You are not allowed to edit this product.'
+      redirect_to category_product_url(category, product)
+      flash[:error] = 'You are not allowed to edit this product.'
     else
       if self.product.update(product_params)
         redirect_to category_product_url(category, product), notice: 'Product was successfully updated.'
@@ -59,7 +62,7 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:title, :description, :price, :category_id)
   end
 
-  def owner(procuct)
+  def owner(product)
     current_user == product.user
   end
 

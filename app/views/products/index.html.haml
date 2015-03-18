@@ -1,3 +1,4 @@
+=flash[:error]
 -if products.count>0
   %h1 Listing products
 -else
@@ -13,7 +14,7 @@
       =product.price
       .pull-right
         = link_to 'Show', category_product_path(product.category, product)
-        -if product.user == current_user
+        -if current_user == current_user
           = link_to 'Edit', edit_category_product_path(product.category, product)
           = link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
 
